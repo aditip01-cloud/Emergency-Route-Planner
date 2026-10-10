@@ -154,10 +154,10 @@ void blockRoad(int source, int destination) {
 
             while (temp != null) {
 
-                System.out.print(
-                    temp.vertex + "(" + temp.weight + ")"
-    + (temp.blocked ? "[BLOCKED] " : " ");
-
+               System.out.print(
+    temp.vertex + "(" + temp.weight + ")"
+    + (temp.blocked ? "[BLOCKED] " : " ")
+);
                 temp = temp.next;
             }
 
