@@ -1,45 +1,48 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Graph graph = new Graph(6);
+        Scanner sc = new Scanner(System.in);
 
-        // Adding emergency road connections
-        graph.addUndirectedRoad(0, 1, 5);
-        graph.addUndirectedRoad(0, 2, 3);
-        graph.addUndirectedRoad(1, 3, 4);
-        graph.addUndirectedRoad(2, 3, 2);
-        graph.addUndirectedRoad(2, 4, 6);
-        graph.addUndirectedRoad(3, 5, 3);
-        graph.addUndirectedRoad(4, 5, 2);
+        Graph graph = new Graph();
 
-        System.out.println("DISASTER EMERGENCY ROAD NETWORK");
-        System.out.println("--------------------------------");
+        // Create the graph only once
+        graph.createGraph(sc);
 
-        graph.displayGraph();
-        System.out.println("\nBefore blockage:");
-graph.dijkstra(0, 5);
+        int choice;
 
-System.out.println("\nBlocking road 3 - 5:");
-graph.blockRoad(3, 5);
+        do {
+            System.out.println("\n===== EMERGENCY DISASTER ROUTE PLANNER =====");
+            System.out.println("1. Find Shortest Emergency Route");
+            System.out.println("2. Display Road Network");
+            System.out.println("0. Exit");
 
-System.out.println("\nAfter blockage:");
-graph.dijkstra(0, 5);
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
 
-graph.displayGraph();
+            switch (choice) {
 
-        System.out.println("\nNeighbors of Location 2:");
+                case 1:
+                    graph.findShortestEmergencyRoute(sc);
+                    break;
 
-        Node temp = graph.getNeighbors(2);
+                case 2:
+                    graph.displayGraph();
+                    break;
 
-        while (temp != null) {
+                case 0:
+                    System.out.println("Exiting Emergency Disaster Route Planner.");
+                    break;
 
-            System.out.println(
-                "Location: " + temp.vertex +
-                ", Distance: " + temp.weight
-            );
+                default:
+                    System.out.println("Invalid choice!");
+            }
 
-            temp = temp.next;
-        }
+        } while (choice != 0);
+
+        sc.close();
     }
 }
