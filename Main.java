@@ -17,6 +17,16 @@ public class Main {
         System.out.println("--------------------------------");
 
         graph.displayGraph();
+        System.out.println("\nBefore blockage:");
+graph.dijkstra(0, 5);
+
+System.out.println("\nBlocking road 3 - 5:");
+graph.blockRoad(3, 5);
+
+System.out.println("\nAfter blockage:");
+graph.dijkstra(0, 5);
+
+graph.displayGraph();
 
         System.out.println("\nNeighbors of Location 2:");
 
